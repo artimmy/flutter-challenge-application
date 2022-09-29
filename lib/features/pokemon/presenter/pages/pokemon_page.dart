@@ -26,7 +26,7 @@ class _PokemonPageState extends State<PokemonPage> {
 
     // Left
     if (response.statusCode == 404) {
-      debugPrint(response.statusCode.toString().toUpperCase());
+      // MELHORIA 404 PRA CIMA É ERRO NESSE CASO PODERIA FICAR ASSIM  response.statusCode <= 404
       setState(() {
         pokemon = 'POKEMON NÃO ENCONTRADO';
         pokemonPicture =
@@ -45,7 +45,7 @@ class _PokemonPageState extends State<PokemonPage> {
 
     // Store
     setState(() {
-      pokemon = 'Nome: $pokemonName  /  Abilidade: $pokemonAbility';
+      pokemon = 'Nome: $pokemonName  /  Habilidade: $pokemonAbility';
       pokemonPicture = pokemonPic;
     });
   }
