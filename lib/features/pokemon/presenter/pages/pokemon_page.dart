@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as _http;
+import 'dart:math';
 import 'dart:convert';
 
 class PokemonPage extends StatefulWidget {
@@ -50,8 +51,23 @@ class _PokemonPageState extends State<PokemonPage> {
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
+  int generateRandomColor() {
+    Random random = Random();
+    return Color.fromARGB(
+      255,
+      random.nextInt(256),
+      random.nextInt(256),
+      random.nextInt(256),
+    ).value;
+  }
+
+final color = Color.fromRGBO(246, 238, 189, 1).value;
+
+  // final int? color = const Color.fromRGBO(255, 125, 1, 1).value;
+  print(color);
     return Scaffold(
       appBar: AppBar(
         title: const Center(
@@ -75,6 +91,11 @@ class _PokemonPageState extends State<PokemonPage> {
                     await searchPokemon();
                   },
                   child: const Text('Procurar'),
+                ),
+                Container(
+                  width: 90,
+                  height: 90,
+                  color: Color(color),
                 ),
               ],
             ),
