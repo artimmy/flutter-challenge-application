@@ -1,6 +1,6 @@
 import 'package:flutter_challenge_application/app/core/shared/interfaces/modular.dart';
-import 'package:flutter_challenge_application/app/core/shared/services/external_client/http_client.dart';
-import 'package:http/http.dart' as _http;
+import 'package:flutter_challenge_application/app/core/shared/services/http_service/uno_http_service.dart';
+import 'package:uno/uno.dart';
 
 class CoreModule extends GlobalModule {
   @override
@@ -9,7 +9,7 @@ class CoreModule extends GlobalModule {
   @override
   final List<GlobalBind<Object>> binds = [
     // HttpService
-    GlobalBind.factory((i) => _http.Client()),
-    GlobalBind.factory((i) => HttpService(client: i())),
+    GlobalBind.factory((i) => Uno()),
+    GlobalBind.factory((i) => UnoHttpService(uno: i())),
   ];
 }
