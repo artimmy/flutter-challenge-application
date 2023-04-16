@@ -1,4 +1,4 @@
-import 'package:flutter_challenge_application/features/pokemon/domain/entities/pokemon_entity.dart';
+import 'package:flutter_challenge_application/app/features/pokemon/domain/entities/pokemon_entity.dart';
 
 class PokemonMapper {
   const PokemonMapper._();
