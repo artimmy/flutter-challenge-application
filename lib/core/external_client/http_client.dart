@@ -1,31 +1,21 @@
 import 'package:http/http.dart' as _http;
 
-abstract class HttpClient {
-  Future<HttpResponse> get(String url);
-}
+import 'helpers/http_service_response.dart';
+import 'i_http_service.dart';
 
-class HttpResponse {
-  final dynamic data;
-  final int? statusCode;
-  const HttpResponse({
-    required this.data,
-    this.statusCode,
-  });
-}
-
-class HttpClientImpl implements HttpClient {
+class HttpClientImpl implements IHttpService {
   final _http.Client client;
   HttpClientImpl({
     required this.client,
   });
 
   @override
-  Future<HttpResponse> get(String url) async {
+  Future<HttpServiceResponse> get(String url) async {
     try {
       final response = await _http.get(Uri.parse(url));
-      return HttpResponse(data: response.body, statusCode: response.statusCode);
+      return HttpServiceResponse(data: response.body, statusCode: response.statusCode);
     } catch (e) {
-      return HttpResponse(data: 'error ===> $e', statusCode: 500);
+      return HttpServiceResponse(data: 'error ===> $e', statusCode: 500);
     }
   }
 }
