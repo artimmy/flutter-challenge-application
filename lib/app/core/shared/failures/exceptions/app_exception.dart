@@ -1,7 +1,7 @@
-import 'i_app_exception.dart';
+import '../i_app_exception.dart';
 
-class AppError extends IAppException {
-  const AppError({
+class AppException extends IAppException {
+  const AppException({
     required String message,
     required StackTrace stackTrace,
   }) : super(message: message, stackTrace: stackTrace);
