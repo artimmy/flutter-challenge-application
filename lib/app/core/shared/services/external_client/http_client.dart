@@ -1,3 +1,4 @@
+import 'package:flutter_challenge_application/app/core/shared/failures/exceptions/http_app_exception.dart';
 import 'package:http/http.dart' as _http;
 
 import 'helpers/http_service_response.dart';
@@ -18,7 +19,12 @@ class HttpService implements IHttpService {
         statusCode: response.statusCode,
       );
     } catch (e) {
-      return HttpServiceResponse(data: 'error ===> $e', statusCode: 500);
+      throw HttpAppException(
+        message: e.toString(),
+        stackTrace: StackTrace.current,
+      );
+    } finally {
+      client.close();
     }
   }
 }
