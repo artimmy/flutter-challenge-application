@@ -1,19 +1,19 @@
 import 'package:flutter_challenge_application/app/core/shared/failures/exceptions/http_app_exception.dart';
-import 'package:http/http.dart' as _http;
+import 'package:uno/uno.dart';
 
 import 'helpers/http_service_response.dart';
 import 'i_http_service.dart';
 
 class HttpService implements IHttpService {
-  final _http.Client client;
+  final Uno uno;
   HttpService({
-    required this.client,
+    required this.uno,
   });
 
   @override
   Future<HttpServiceResponse> get(String url) async {
     try {
-      final response = await _http.get(Uri.parse(url));
+      final response = await uno.get(Uri.parse(url));
       return HttpServiceResponse(
         data: response.body,
         statusCode: response.statusCode,
@@ -24,7 +24,7 @@ class HttpService implements IHttpService {
         stackTrace: StackTrace.current,
       );
     } finally {
-      client.close();
+      uno.close();
     }
   }
 }
