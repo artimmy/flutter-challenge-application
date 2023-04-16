@@ -95,7 +95,11 @@ final color = Color.fromRGBO(246, 238, 189, 1).value;
                 Container(
                   width: 90,
                   height: 90,
-                  color: Color(color),
+                  color: Color(generateRandomColor()),
+                ),
+                // selecionar texto
+                const SelectableText(
+                  'The stars twinkled in the midnight sky,\n As the wind whispered a lullaby.',
                 ),
               ],
             ),
