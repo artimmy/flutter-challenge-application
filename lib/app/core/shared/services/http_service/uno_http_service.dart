@@ -1,22 +1,27 @@
+import 'dart:convert';
+
 import 'package:flutter_challenge_application/app/core/shared/failures/exceptions/http_app_exception.dart';
+import 'package:http/http.dart' as http;
 import 'package:uno/uno.dart';
 
 import 'helpers/http_service_response.dart';
 import 'i_http_service.dart';
 
 class UnoHttpService implements IHttpService {
-  final Uno uno;
+  final http.Client client;
   const UnoHttpService({
-    required this.uno,
+    required this.client,
   });
 
   @override
   Future<HttpServiceResponse> get(String url) async {
     try {
-      final response = await uno.get(url);
+      final response = await client.get(Uri.parse(url));
+      var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
+
       return HttpServiceResponse(
-        data: response.data,
-        statusCode: response.status,
+        data: jsonResponse,
+        statusCode: response.statusCode,
       );
     } on UnoError catch (e) {
       final code = e.response!.status;
@@ -43,8 +48,7 @@ class UnoHttpService implements IHttpService {
           );
         case 503:
           throw HttpAppException(
-            message:
-                'O serviço esta indisponível no momento, tente mais tarde: $code',
+            message: 'O serviço esta indisponível no momento, tente mais tarde: $code',
             stackTrace: StackTrace.current,
           );
         case 511:
@@ -58,6 +62,8 @@ class UnoHttpService implements IHttpService {
             stackTrace: StackTrace.current,
           );
       }
+    } finally {
+      client.close();
     }
   }
 }

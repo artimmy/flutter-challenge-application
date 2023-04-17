@@ -11,8 +11,3 @@ void main() {
     ),
   );
 }
-
-  // runApp(const MaterialApp(
-  //   home: PokemonPage(),
-  //   debugShowCheckedModeBanner: false,
-  // ));

@@ -7,7 +7,7 @@ class PokemonMapper {
     return PokemonEntity(
       name: map['name'],
       picture: map['sprites']['other']['official-artwork']['front_default'],
-      ability: map['abilities']['ability']['name'],
+      ability: map['abilities'][0]['ability']['name'],
     );
   }
 }

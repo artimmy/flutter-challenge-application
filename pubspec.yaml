@@ -39,6 +39,7 @@ dependencies:
   flutter_modular: ^5.0.3
   fpdart: ^0.3.0
   flutter_triple: ^1.2.6
+  http_parser: ^4.0.2
   uno: 1.1.1
 
 dev_dependencies:

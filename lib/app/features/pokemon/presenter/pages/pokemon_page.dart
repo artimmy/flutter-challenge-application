@@ -77,35 +77,39 @@ class _PokemonPageState extends State<PokemonPage> {
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Image.network(
-                  widget.pokemonController.hintPicture,
-                ),
-                Text(
-                  widget.pokemonController.hintName,
-                ),
-                TextField(
-                  autofocus: true,
-                  controller: widget.pokemonController.pokemonTextController,
-                ),
-                ElevatedButton(
-                  onPressed: () async {
-                    await widget.pokemonController.searchPokemon();
-                  },
-                  child: const Text('Procurar'),
-                ),
-                // Container(
-                //   width: 90,
-                //   height: 90,
-                //   color: Color(generateRandomColor()),
-                // ),
-                // // selecionar texto
-                // const SelectableText(
-                //   'The stars twinkled in the midnight sky,\n As the wind whispered a lullaby.',
-                // ),
-              ],
-            ),
+            child: ValueListenableBuilder(
+                valueListenable: widget.pokemonController.pokemonStore.selectState,
+                builder: (context, state, child) {
+                  return Column(
+                    children: [
+                      Image.network(
+                        widget.pokemonController.hintPicture,
+                      ),
+                      Text(
+                        widget.pokemonController.hintName,
+                      ),
+                      TextField(
+                        autofocus: true,
+                        controller: widget.pokemonController.pokemonTextController,
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          await widget.pokemonController.searchPokemon();
+                        },
+                        child: const Text('Procurar'),
+                      ),
+                      // Container(
+                      //   width: 90,
+                      //   height: 90,
+                      //   color: Color(generateRandomColor()),
+                      // ),
+                      // // selecionar texto
+                      // const SelectableText(
+                      //   'The stars twinkled in the midnight sky,\n As the wind whispered a lullaby.',
+                      // ),
+                    ],
+                  );
+                }),
           ),
         ),
       ),
