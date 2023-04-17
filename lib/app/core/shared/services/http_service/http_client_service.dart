@@ -7,9 +7,9 @@ import 'package:uno/uno.dart';
 import 'helpers/http_service_response.dart';
 import 'i_http_service.dart';
 
-class UnoHttpService implements IHttpService {
+class HttpClientService implements IHttpService {
   final http.Client client;
-  const UnoHttpService({
+  const HttpClientService({
     required this.client,
   });
 
