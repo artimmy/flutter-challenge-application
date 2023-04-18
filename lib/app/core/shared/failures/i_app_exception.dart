@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 @immutable
-class IAppException implements Exception {
+abstract class IAppException implements Exception {
   final String message;
   final StackTrace stackTrace;
 
